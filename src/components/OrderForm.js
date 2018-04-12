@@ -160,13 +160,19 @@ const validate = values => {
       if (!product || !product.quantity) {
         productErrors.quantity = 'Required'
         productsArrayErrors[productIndex] = productErrors
-      }
-      if (!product || !product.productId) {
-        productErrors.productId = 'Required'
-        productsArrayErrors[productIndex] = productErrors
+      } else if (product.quantity <= 0) {
+        productErrors.quantity = 'Only positive numbers are allowed';
+        productsArrayErrors[productIndex] = productErrors;
       }
       if (!product || !product.price) {
         productErrors.price = 'Required'
+        productsArrayErrors[productIndex] = productErrors
+      } else if (product.price < 0.01) {
+        productErrors.price = 'Only positive numbers are allowed';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+      if (!product || !product.productId) {
+        productErrors.productId = 'Required'
         productsArrayErrors[productIndex] = productErrors
       }
     })
