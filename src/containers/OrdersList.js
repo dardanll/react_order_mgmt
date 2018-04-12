@@ -116,9 +116,9 @@ class OrdersList extends Component {
                           onClick={this.toggleCheckbox} />
                       </td>
                       <td>
-                        <a href="#" onClick={ () => this.props.createTab(order.id)}>
+                        <button onClick={ () => this.props.createTab(order.id)}>
                           {order.id}
-                        </a>
+                        </button>
                       </td>
                       <td>{order.date}</td>
                       <td>{order.price}</td>
