@@ -4,6 +4,7 @@ import RenderField from '../utils/RenderField';
 import RenderSelect from '../utils/RenderSelect';
 
 import Totals from './Totals';
+import styles from '../styles/form';
 
 
 class OrderForm extends Component {
@@ -13,7 +14,7 @@ class OrderForm extends Component {
       <button type="button" onClick={() => fields.push({})}>
         Add product
       </button>
-      {submitFailed && error && <span style={{color: 'red'}}>{error}</span>}
+      {submitFailed && error && <span style={styles.errors}>{error}</span>}
       { fields.length > 0 &&
         <table>
           <thead>
@@ -83,7 +84,7 @@ class OrderForm extends Component {
       <div>
       <Totals form={form}/>
 
-      <form onSubmit={handleSubmit} style={{float: 'left', marginTop: '25px'}}>
+      <form onSubmit={handleSubmit} style={styles.form}>
         <fieldset disabled={disabledField}>
           <Field
             disabled={true}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { values as valuesDecorator } from 'redux-form';
 
+import styles from '../styles/totals';
+
 const totalPrice = values => {
   if (values && values.products) {
     return values.products.reduce(function (accumulator, product) {
@@ -39,7 +41,7 @@ export default ({ form }) => {
   const decorator = valuesDecorator({ form })
   const component = ({ values }) =>
     (
-      <div style={{float: 'right', marginLeft: '200px'}}>
+      <div style={styles.section}>
         <h2>Totals</h2>
         <p>Ext. Price: {totalPrice(values)}</p>
         <p>Tax: {totalTaxes(values)} </p>
