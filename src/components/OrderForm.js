@@ -1,27 +1,12 @@
 import React, { Component } from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
+import RenderField from '../utils/RenderField';
+import RenderSelect from '../utils/RenderSelect';
 
 import Totals from './Totals';
 
 
 class OrderForm extends Component {
-
-  renderField = ({ input, disabled, label, type, meta: { touched, error } }) => (
-    <div> 
-      <div>
-        <input {...input} type={type} placeholder={label} disabled={disabled} />
-        {touched && error && <span style={{color: 'red'}}>{error}</span>}
-      </div>
-    </div>
-  )
-
-  renderSelect = ({ input, children, meta: {touched, error } }) => {
-    return (<div>
-      <select {...input}> {children} </select>
-      {touched && error && <span style={{color: 'red'}}>{error}</span>}
-    </div>)
-  }
-
   renderProducts = ({ fields, meta: { error, submitFailed } }) => (
     <div>
       <hr/>
@@ -45,7 +30,7 @@ class OrderForm extends Component {
             <tr key={index}>                
               <td>#{index + 1}</td>
               <td>
-                <Field name={`${product}.productId`} component={this.renderSelect}>
+                <Field name={`${product}.productId`} component={RenderSelect}>
                   <option></option>
                   <option name="book">Book</option>
                   <option name="pencil">Pencil</option>
@@ -56,7 +41,7 @@ class OrderForm extends Component {
                 <Field
                   name={`${product}.quantity`}
                   type="number"
-                  component={this.renderField}
+                  component={RenderField}
                   placeholder="Enter Quantity"
                 />
               </td>
@@ -64,7 +49,7 @@ class OrderForm extends Component {
                 <Field
                   name={`${product}.price`}
                   type="number"
-                  component={this.renderField}
+                  component={RenderField}
                 />
               </td>
               <td>
@@ -105,20 +90,20 @@ class OrderForm extends Component {
             name="id"
             type="text"
             label="Order No."
-            component={this.renderField}
+            component={RenderField}
           />
           <Field
             name="date"
             type="date"
             label="Date"
-            component={this.renderField}
+            component={RenderField}
           />
           <Field
             disabled={true}
             name="tax"
             type="text"
             label="Tax 15%"
-            component={this.renderField}
+            component={RenderField}
           />
           <FieldArray name="products" component={this.renderProducts} />
           <div>
